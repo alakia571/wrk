@@ -1,3 +1,30 @@
+fn func1_pattern(user_level: u8){
+    match user_level {
+        0 => println!("WELCOKE  0"),
+        1 => println!("WELCOKE  1"),
+        2 => println!("WELCOKE  2"),
+        _ => println!("Error")
+    }
+}
+
+
+#[derive(Clone)]
+enum HttpStatus{
+    Ok = 200,
+    NotFound = 404,
+    InternalServerError = 500
+}
+
+
+fn print_status_pattern(status: HttpStatus){
+
+    match status {
+        HttpStatus::Ok => println!(" kheili ham awli !"),
+        HttpStatus::NotFound => println!(" nabode keh !"),
+        HttpStatus::InternalServerError => println!(" bad shod keh ")
+    }
+}
+
 fn main() {
     // println!("سلام دنیا!");
     // chars_display();
@@ -11,9 +38,27 @@ fn main() {
     // print_star();
     // loop_instead_while();
     // adad_aval(1085);
-    factorial(5);
+    // factorial(5);
+
+    /* patterns */
+
+    let user_inputs : [u8; 5] = [0, 1, 2, 3, 5];
+
+    for user_input in user_inputs.iter() {
+        func1_pattern(*user_input);
+    };
+
+
+    let status_list : [HttpStatus; 3] = [HttpStatus::Ok, HttpStatus::NotFound, HttpStatus::InternalServerError];
+
+    for status in status_list.iter(){
+        print_status_pattern(status.clone())
+    }
 }
 
+
+
+/*
 fn chars_display() {
     let a = 'e';
     let b = '1';
@@ -177,3 +222,4 @@ fn factorial(num: i32) -> i32 {
 
     return num * factorial(num - 1);
 }
+    */
