@@ -1,3 +1,4 @@
+/* patterns
 fn func1_pattern(user_level: u8){
     match user_level {
         0 => println!("WELCOKE  0"),
@@ -25,22 +26,123 @@ fn print_status_pattern(status: HttpStatus){
     }
 }
 
-fn main() {
-    // println!("سلام دنیا!");
-    // chars_display();
-    // array_display();
-    // array_print();
-    // tuple_display();
-    // simple_looper();
-    // simple_while();
-    // simple_for();
-    // array_itrate();
-    // print_star();
-    // loop_instead_while();
-    // adad_aval(1085);
-    // factorial(5);
 
-    /* patterns */
+struct RgbStruct{
+    red: u16,
+    green: u16,
+    blue: u16
+}
+
+
+fn color_exract_and_match(color: RgbStruct){
+    match color{
+        RgbStruct {red:r @ 0..=100, green:0, blue:0} => println!("This color is soft red : {}", r),
+        RgbStruct {red:1, green:10, blue:10} => println!("1, 10 , 10"),
+        _ => println!("Bad Req")
+    }
+}
+
+
+
+fn get_pair(slice: &[i32]) -> (i32, i32) {
+    match slice {
+        [e1] => (*e1, *e1),
+        [e1, e2, ..,e3, e4] => {
+            let avg1 = (e1+e2).pow(2);
+            let avg2 = (e1+e2).pow(2);
+            (avg1, avg2)
+        },
+        [e1, .., e2] => (*e1, *e2),
+        [] => (0,0)
+    }
+}
+ */
+
+/* Trait , interface, trait inheritance
+trait Animal {
+    fn eat(&self) {
+        println!("all animals need to eat foods to alive!")
+    }
+}
+
+trait Fish: Animal {
+    fn moves(&self) {
+        println!("fish should swim to move")
+    }
+}
+
+struct Dolfine {
+    name: String,
+}
+
+impl Fish for Dolfine {}
+
+impl Animal for Dolfine {
+    // fn eat(&self){
+    //     println!("all animals need to eat foods to alive! 1111")
+    // }
+}
+ */
+
+/* struct with same method in multiple trait
+
+trait Human{
+    fn call_name(&self){
+        println!("I am a human !")
+    }
+
+    fn walk(&self){
+        println!("i can walk !")
+    }
+}
+
+
+trait Man{
+    fn call_name(&self){
+        println!("I am a man")
+    }
+
+    fn shape(&self){
+        println!("i a man with male body features!")
+    }
+}
+
+
+struct Student{
+    name: String,
+    id: u16,
+    age: u8
+}
+
+
+
+impl Human for Student{}
+
+impl Man for Student{}
+
+*/
+
+
+
+fn main() {
+    /* initial project    -------------------------------------------------------
+    println!("سلام دنیا!");
+    chars_display();
+    array_display();
+    array_print();
+    tuple_display();
+    simple_looper();
+    simple_while();
+    simple_for();
+    array_itrate();
+    print_star();
+    loop_instead_while();
+    adad_aval(1085);
+    factorial(5);
+    --------------------------------------------
+    */
+
+    /* patterns -----------------------------------------------------------------
 
     let user_inputs : [u8; 5] = [0, 1, 2, 3, 5];
 
@@ -53,10 +155,68 @@ fn main() {
 
     for status in status_list.iter(){
         print_status_pattern(status.clone())
-    }
+    };
+
+    let sample_struct = RgbStruct{
+        red: 100,
+        green: 200,
+        blue: 300
+    };
+
+    color_exract_and_match(sample_struct);
+
+    let s_list = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+    let mut slice = &s_list[..];
+    let mut pair = get_pair(slice);
+    println!("created pair from {:?} is: {:?}", slice, pair);
+
+    slice = &s_list(..=1);
+    pair = get_pair(slice);
+    println!("created pair from {:?} is: {:?}", slice, pair);
+
+
+    slice = &a[..=4];
+    pair = get_pair(slice);
+    println!("Created pair from {:?} is: {:?}", slice, pair);
+
+    slice = &a[0..1];
+    pair = get_pair(slice);
+    println!("Created pair from {:?} is: {:?}", slice, pair);
+
+    slice = &[];
+    pair = get_pair(slice);
+    println!("Created pair from {:?} is: {:?}", slice, pair);
+
+    slice = &a[..3];
+    pair = get_pair(slice);
+    println!("Created pair from {:?} is: {:?}", slice, pair);
+    --------------------------------------------
+    */
+
+    /* Trait , interface, trait inheritance   -----------------------------------
+
+    let eddi_dolfine = Dolfine {
+        name: String::from("eddi"),
+    };
+
+    eddi_dolfine.moves();
+    eddi_dolfine.eat();
+    */
+
+    /* struct with same method in multiple trait --------------------------------
+
+    let ali = Student{
+        name: String::from("ali"),
+        id: 1,
+        age: 12
+    };
+
+    Human::call_name(&ali);
+
+    Man::call_name(&ali);
+    */
 }
-
-
 
 /*
 fn chars_display() {
